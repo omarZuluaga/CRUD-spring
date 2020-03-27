@@ -1,5 +1,6 @@
 package com.api.omar.service;
 
+import com.api.omar.events.EventOmar;
 import com.api.omar.model.Omar;
 import com.api.omar.model.OmarRepository;
 import com.api.omar.resource.OmarDto;
@@ -18,12 +19,17 @@ public class OmarAdapter implements OmarService {
   OmarRepository omarRepository;
 
   @Autowired
+  EventOmar eventOmar;
+
+  @Autowired
   ObjectMapper objectMapper;
 
   @Override
   public OmarDto save(OmarDto omar) {
     Omar omarSave = objectMapper.convertValue(omar, Omar.class);
-    return objectMapper.convertValue(omarRepository.save(omarSave), OmarDto.class);
+    objectMapper.convertValue(omarRepository.save(omarSave), OmarDto.class);
+    eventOmar.publishOmar(omar);
+    return omar;
   }
 
   @Override

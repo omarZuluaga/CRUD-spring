@@ -8,4 +8,5 @@ public interface OmarService {
    public List<OmarDto> findAll();
    public OmarDto update(OmarDto omar);
    public void delete(String id);
+
 }
