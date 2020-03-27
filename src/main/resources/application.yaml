@@ -1,0 +1,8 @@
+server:
+  port: 8012
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  data:
+    mongodb:
+      uri: mongodb://10.180.81.44:27017/Mipres
